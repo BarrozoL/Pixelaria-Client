@@ -5,14 +5,14 @@ export default function WelcomeScreen() {
   const navigate = useNavigate();
 
   const handleEnterClick = () => {
-    navigate("");
+    navigate("/card-select-screen");
   };
 
   return (
     <div className="welcome-screen">
       <h1>Welcome to Pixelaria</h1>
 
-      <button>Enter World</button>
+      <button onClick={handleEnterClick}>Enter World</button>
     </div>
   );
 }

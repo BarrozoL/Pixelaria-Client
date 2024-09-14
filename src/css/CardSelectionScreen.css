@@ -1,0 +1,78 @@
+.card-select-screen {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.card-inventory {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 1%;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+  top: 10%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: 290px;
+  padding: 20px;
+  padding-top: 8px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: rgb(0, 168, 107);
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+}
+
+.card-name {
+  border: 2px solid black;
+  margin-bottom: 3px;
+  color: white;
+  background-color: peru;
+  font-family: "Franklin Gothic Medium";
+  font-weight: bold;
+  font-size: 14px;
+  padding: 2px;
+}
+
+.card-img {
+  max-width: 100%;
+  max-height: 200px;
+  border: 1px solid black;
+  object-fit: contain;
+}
+
+.stats-container {
+  padding: 7px;
+  padding-bottom: 30%;
+  height: 42px;
+  color: white;
+  font-size: 13px;
+  border: 1px solid black;
+  font-family: "Franklin Gothic Medium";
+  font-weight: bold;
+}
+
+.player-card-attack {
+  color: rgb(18, 18, 102);
+}
+
+.player-card-health {
+  color: rgb(137, 11, 11);
+}
+
+.player-card-specialAttack {
+  font-size: 9px;
+  color: black;
+  margin-top: 6px;
+}
