@@ -4,15 +4,19 @@ import "../css/WelcomeScreen.css";
 export default function WelcomeScreen() {
   const navigate = useNavigate();
 
-  const handleEnterClick = () => {
-    navigate("/card-select-screen");
+  const handleCreateAccountClick = () => {
+    navigate("/auth/signup");
+  };
+
+  const handleLoginClick = () => {
+    navigate("/auth/login");
   };
 
   return (
     <div className="welcome-screen">
       <h1>Welcome to Pixelaria</h1>
-
-      <button onClick={handleEnterClick}>Enter World</button>
+      <button onClick={handleLoginClick}>Login</button>
+      <button onClick={handleCreateAccountClick}>Create Account</button>
     </div>
   );
 }

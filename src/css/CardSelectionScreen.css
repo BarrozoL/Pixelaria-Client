@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.card-inventory {
+.card-book {
   display: flex;
   align-content: center;
   align-items: center;
@@ -75,4 +75,14 @@
   font-size: 9px;
   color: black;
   margin-top: 6px;
+}
+
+.player-inventory {
+  border: 1px solid black;
+  width: 90vw;
+  height: 20vw;
+  background-color: blue;
+  position: fixed;
+  bottom: 0;
+  left: 50;
 }

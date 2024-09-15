@@ -25,12 +25,11 @@ export default function CardSelectionScreen() {
     <>
       <div className="card-select-screen">
         <h1>Select and equip your cards!</h1>
-        <div className="card-inventory">
+        <div className="card-book">
           {playerCards &&
             playerCards.map((playerCard) => {
               return (
-                <div className="card">
-                  {console.log(playerCard)}
+                <div key={playerCard._id} className="card">
                   <p className="card-name">{playerCard.name}</p>
                   <img className="card-img" src={playerCard.image} />
                   <div className="stats-container">
@@ -49,7 +48,6 @@ export default function CardSelectionScreen() {
             })}
         </div>
       </div>
-
       <div className="player-inventory"></div>
     </>
   );
