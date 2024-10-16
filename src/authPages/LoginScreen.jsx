@@ -47,7 +47,7 @@ export default function LoginScreen() {
         ></input>
         Password:
         <input
-          type="passoword"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
