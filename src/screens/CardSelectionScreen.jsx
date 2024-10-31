@@ -23,9 +23,12 @@ export default function CardSelectionScreen() {
 
   const getCards = async () => {
     axios
-      .get(`${import.meta.env.VITE_SERVER_URL}/api/cards/player-cards`)
+      .get(`${import.meta.env.VITE_SERVER_URL}/api/cards`)
       .then((response) => {
-        setPlayerCards(response.data);
+        const onlyPlayerCards = response.data.filter((card) => {
+          return card.category === "player";
+        });
+        setPlayerCards(onlyPlayerCards);
       })
       .catch((error) => {
         console.error("Error fetching player cards:", error);

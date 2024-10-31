@@ -12,11 +12,18 @@ export default function WelcomeScreen() {
     navigate("/auth/login");
   };
 
+  const handleNavigateToCardSelection = () => {
+    navigate("/card-select-screen");
+  };
+
   return (
     <div className="welcome-screen">
       <h1>Welcome to Pixelaria</h1>
       <button onClick={handleLoginClick}>Login</button>
       <button onClick={handleCreateAccountClick}>Create Account</button>
+      <button onClick={handleNavigateToCardSelection}>
+        Select your cards!
+      </button>
     </div>
   );
 }

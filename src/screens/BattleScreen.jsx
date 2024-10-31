@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function BattleScreen() {
   const [playerCards, setPlayerCards] = useState([]);
-  const [currentEnemy, setCurrentEnemy] = useState();
+  const [currentEnemy, setCurrentEnemy] = useState(null);
   const [enemies, setEnemies] = useState([]);
   const [player, setPlayer] = useState();
   const token = localStorage.getItem("authToken");
@@ -15,20 +15,17 @@ export default function BattleScreen() {
   useEffect(() => {
     getPlayer();
     getEnemies();
-
-    //setting the currentEnemy to the first enemy in enemies array
-    if (enemies.length > 0) {
-      setCurrentEnemy(enemies[currentEnemyCounter]);
-    }
-  }, [enemies]);
-
-  const currentEnemyCounter = 0; //need to increment it every time an enemy is defeated, to get the next enemy
+  }, []);
 
   const getEnemies = async () => {
     axios
-      .get(`${import.meta.env.VITE_SERVER_URL}/api/cards/enemy-cards`)
+      .get(`${import.meta.env.VITE_SERVER_URL}/api/cards`)
       .then((response) => {
-        setEnemies(response.data);
+        const onlyEnemyCards = response.data.filter((card) => {
+          return card.category === "enemy";
+        });
+        setEnemies(onlyEnemyCards);
+        return setCurrentEnemy(onlyEnemyCards[0]);
       })
       .catch((error) => {
         console.error("Error fetching enemies:", error);
@@ -46,11 +43,59 @@ export default function BattleScreen() {
       });
   };
 
+  const handleCardClick = (playerCard) => {
+    //Damaging enemy
+    const updatedEnemy = {
+      ...currentEnemy,
+      health: currentEnemy.health - playerCard.attack,
+    };
+    setCurrentEnemy(updatedEnemy);
+
+    //Damaging player
+    const updatedPlayerCard = {
+      ...playerCard,
+      health: playerCard.health - currentEnemy.attack,
+    };
+    setPlayer((prevPlayer) => ({
+      ...prevPlayer,
+      inventory: prevPlayer.inventory.map((card) =>
+        card._id === updatedPlayerCard._id ? updatedPlayerCard : card
+      ),
+    }));
+
+    //Bringing out new enemy after defeat
+    if (updatedEnemy.health <= 0) {
+      console.log("Enemy defeated!");
+      const updatedEnemies = enemies.filter(
+        (enemy) => enemy._id !== currentEnemy._id
+      );
+      setEnemies(updatedEnemies);
+      setCurrentEnemy(updatedEnemies[0] || null);
+      addToInventory(updatedEnemy._id);
+    }
+  };
+
+  const addToInventory = async (cardId) => {
+    axios
+      .put(`${import.meta.env.VITE_SERVER_URL}/api/player/inventory`, {
+        playerId: playerId,
+        cardId: cardId,
+      })
+      .then((response) => {
+        getPlayer();
+      })
+      .catch((error) => {
+        console.log("Error adding card to player inventory:", error);
+      });
+  };
+
+  const battleCycle = () => {};
+
   return (
-    <div>
+    <div className="battle-screen">
       <h1>Battle!</h1>
       <div className="enemy-div">
-        {currentEnemy && <div key={currentEnemy._id}></div>}
+        {currentEnemy && <div key={currentEnemy?._id}></div>}
         <div className="enemy-stats-container">
           <div>{currentEnemy?.name}</div>
           <div>Health: {currentEnemy?.health}</div>
@@ -61,7 +106,11 @@ export default function BattleScreen() {
       <div className="player-inventory">
         {player?.inventory.map((playerCard, index) => {
           return (
-            <div key={playerCard._id + index} className="card">
+            <div
+              onClick={() => handleCardClick(playerCard)}
+              key={playerCard._id + index}
+              className="card"
+            >
               <p className="card-name">{playerCard.name}</p>
               <img className="card-img" src={playerCard.image} />
               <div className="stats-container">
@@ -79,6 +128,9 @@ export default function BattleScreen() {
           );
         })}
       </div>
+      {enemies.length === 0 ? (
+        <p style={{ fontSize: "200px" }}>VICTORY!!!</p>
+      ) : null}
     </div>
   );
 }
