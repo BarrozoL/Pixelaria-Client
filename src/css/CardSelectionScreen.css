@@ -1,0 +1,105 @@
+.card-select-screen {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  background-color: saddlebrown;
+  min-height: 100vw;
+}
+
+.start-battle-button {
+  position: fixed;
+  bottom: 90%;
+  left: 1%;
+  width: 7vw;
+}
+
+.card-book {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 1%;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+  top: 10%;
+}
+
+.card {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: auto;
+  padding: 20px;
+  padding-top: 2px;
+  border: 2px solid black;
+  text-align: center;
+  background-color: rgb(0, 168, 107);
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+}
+
+.card-name {
+  border: 2px solid black;
+  margin-top: 6px;
+  margin-bottom: 3px;
+  color: white;
+  background-color: peru;
+  font-family: "Franklin Gothic Medium";
+  font-weight: bold;
+  font-size: 14px;
+  padding: 2px;
+}
+
+.card-img {
+  max-width: 100%;
+  max-height: 60%;
+  object-fit: contain;
+}
+
+.stats-container {
+  height: 98px;
+  color: white;
+  font-size: 13px;
+  font-family: "Franklin Gothic Medium";
+  font-weight: bold;
+}
+
+.player-card-attack {
+  color: rgb(18, 18, 102);
+  margin: 0;
+  padding: 0;
+}
+
+.player-card-health {
+  color: rgb(137, 11, 11);
+  margin: 0;
+  padding: 0;
+}
+
+.player-card-specialAttack {
+  font-size: 9px;
+  color: black;
+  margin-top: 6px;
+}
+
+.player-inventory {
+  border: 1px solid black;
+  width: 90vw;
+  height: 16vw;
+  background-color: sandybrown;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  display: flex;
+  gap: 10px;
+  margin: 5px;
+  padding: 10px;
+  justify-self: center;
+}

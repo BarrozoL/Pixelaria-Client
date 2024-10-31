@@ -1,0 +1,16 @@
+.welcome-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("images/backgrounds/intro-screen-background.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

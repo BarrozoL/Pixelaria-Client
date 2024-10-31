@@ -1,0 +1,35 @@
+.battle-screen {
+  height: 100vh;
+  display: flex;
+
+  background-image: url("images/backgrounds/intro-screen-background.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.player-inventory {
+  opacity: 0.95;
+}
+
+.enemy-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  left: 50%;
+  right: 50%;
+  position: absolute;
+}
+
+.enemy-stats-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.current-enemy-image {
+  width: 15vw;
+}
+
+.card {
+  border-radius: 10px;
+}
